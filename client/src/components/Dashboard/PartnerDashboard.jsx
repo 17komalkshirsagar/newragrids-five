@@ -20,7 +20,7 @@ const PartnerDashboard = () => {
     try {
       await logoutApi().unwrap();
       alert("Logged out successfully!");
-      window.location.href = "/";
+      window.location.href = "/choose-account-type";
     } catch (err) {
       console.error(err);
       alert("Logout failed");
@@ -35,7 +35,7 @@ const PartnerDashboard = () => {
       </div>
     </div>
   );
-  
+
   if (isError) return (
     <div style={{ padding: '40px', textAlign: 'center', color: '#e74c3c' }}>
       <h2>Error loading profile</h2>
@@ -48,17 +48,17 @@ const PartnerDashboard = () => {
   return (
     <div style={{ padding: "20px", maxWidth: "1200px", margin: "auto", fontFamily: "'Segoe UI', sans-serif" }}>
       {/* Header */}
-      <div style={{ 
-        display: "flex", 
-        justifyContent: "space-between", 
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
         alignItems: "center",
         paddingBottom: "20px",
         borderBottom: "1px solid #e1e5eb",
         marginBottom: "30px"
       }}>
         <div>
-          <h1 style={{ 
-            margin: 0, 
+          <h1 style={{
+            margin: 0,
             color: "#2c3e50",
             fontSize: "28px",
             fontWeight: "600"
@@ -97,7 +97,7 @@ const PartnerDashboard = () => {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "30px" }}>
         {/* Left Column - Profile Card */}
         <div>
-          
+
           <div style={{
             background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
             borderRadius: "12px",
@@ -105,9 +105,9 @@ const PartnerDashboard = () => {
             color: "white",
             boxShadow: "0 10px 30px rgba(102, 126, 234, 0.3)"
           }}>
-            <div style={{ 
-              display: "flex", 
-              alignItems: "center", 
+            <div style={{
+              display: "flex",
+              alignItems: "center",
               gap: "15px",
               marginBottom: "20px"
             }}>
@@ -126,8 +126,8 @@ const PartnerDashboard = () => {
               </div>
               <div>
                 <h2 style={{ margin: 0, fontSize: "22px" }}>{profile?.name}</h2>
-                <p style={{ 
-                  margin: "5px 0 0 0", 
+                <p style={{
+                  margin: "5px 0 0 0",
                   opacity: 0.9,
                   fontSize: "14px",
                   display: "flex",
@@ -137,7 +137,7 @@ const PartnerDashboard = () => {
                   <MdBusinessCenter /> {profile?.role}
                 </p>
               </div>
-              
+
             </div>
 
             <div style={{ marginTop: "25px" }}>
@@ -153,7 +153,7 @@ const PartnerDashboard = () => {
           </div>
 
           {/* Quick Stats */}
-          <div style={{ 
+          <div style={{
             marginTop: "20px",
             background: "#fff",
             borderRadius: "12px",
@@ -161,22 +161,22 @@ const PartnerDashboard = () => {
             boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
           }}>
             <h3 style={{ margin: "0 0 15px 0", color: "#2c3e50" }}>Project Overview</h3>
-            
-            <div style={{ 
-              display: "grid", 
-              gridTemplateColumns: "1fr 1fr", 
+
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
               gap: "15px",
               marginBottom: "20px"
             }}>
               <div style={{ textAlign: "center" }}>
-                <div style={{ 
+                <div style={{
                   background: "#e8f4fc",
                   borderRadius: "10px",
                   padding: "15px",
                   height: "100%"
                 }}>
-                  <div style={{ 
-                    fontSize: "24px", 
+                  <div style={{
+                    fontSize: "24px",
                     fontWeight: "bold",
                     color: "#3498db",
                     marginBottom: "5px"
@@ -188,16 +188,16 @@ const PartnerDashboard = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div style={{ textAlign: "center" }}>
-                <div style={{ 
+                <div style={{
                   background: "#f0f7f0",
                   borderRadius: "10px",
                   padding: "15px",
                   height: "100%"
                 }}>
-                  <div style={{ 
-                    fontSize: "24px", 
+                  <div style={{
+                    fontSize: "24px",
                     fontWeight: "bold",
                     color: "#27ae60",
                     marginBottom: "5px"
@@ -210,10 +210,10 @@ const PartnerDashboard = () => {
                 </div>
               </div>
             </div>
-            
-            <div style={{ 
-              display: "flex", 
-              alignItems: "center", 
+
+            <div style={{
+              display: "flex",
+              alignItems: "center",
               gap: "10px",
               background: "#f8f9fa",
               padding: "15px",
@@ -228,10 +228,10 @@ const PartnerDashboard = () => {
                 </div>
               </div>
             </div>
-            
-            <div style={{ 
-              display: "flex", 
-              alignItems: "center", 
+
+            <div style={{
+              display: "flex",
+              alignItems: "center",
               gap: "10px",
               background: "#f8f9fa",
               padding: "15px",
@@ -251,16 +251,16 @@ const PartnerDashboard = () => {
         {/* Right Column - Details */}
         <div>
           {/* Project Details Card */}
-          <div style={{ 
+          <div style={{
             background: "#fff",
             borderRadius: "12px",
             padding: "25px",
             boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
             marginBottom: "25px"
           }}>
-            <div style={{ 
-              display: "flex", 
-              justifyContent: "space-between", 
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
               alignItems: "center",
               marginBottom: "20px"
             }}>
@@ -280,8 +280,8 @@ const PartnerDashboard = () => {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
               {/* Location Section */}
               <div>
-                <h3 style={{ 
-                  margin: "0 0 15px 0", 
+                <h3 style={{
+                  margin: "0 0 15px 0",
                   color: "#2c3e50",
                   fontSize: "16px",
                   display: "flex",
@@ -290,7 +290,7 @@ const PartnerDashboard = () => {
                 }}>
                   <MdLocationOn style={{ color: "#e74c3c" }} /> Location
                 </h3>
-                <div style={{ 
+                <div style={{
                   background: "#f8f9fa",
                   padding: "15px",
                   borderRadius: "10px",
@@ -299,10 +299,10 @@ const PartnerDashboard = () => {
                   <DetailRow label="Address" value={profile?.location?.address} />
                   <DetailRow label="District" value={profile?.location?.district} />
                   <DetailRow label="Taluka" value={profile?.location?.taluka} />
-                  <DetailRow 
-                    label="Coordinates" 
-                    value={profile?.location?.coordinates ? 
-                      `${profile.location.coordinates.lat}, ${profile.location.coordinates.lng}` : 
+                  <DetailRow
+                    label="Coordinates"
+                    value={profile?.location?.coordinates ?
+                      `${profile.location.coordinates.lat}, ${profile.location.coordinates.lng}` :
                       "N/A"
                     }
                   />
@@ -311,23 +311,23 @@ const PartnerDashboard = () => {
 
               {/* Technical Details */}
               <div>
-                <h3 style={{ 
-                  margin: "0 0 15px 0", 
+                <h3 style={{
+                  margin: "0 0 15px 0",
                   color: "#2c3e50",
                   fontSize: "16px"
                 }}>
                   Technical Details
                 </h3>
-                <div style={{ 
+                <div style={{
                   background: "#f8f9fa",
                   padding: "15px",
                   borderRadius: "10px",
                   height: "100%"
                 }}>
-                  <DetailRow 
-                    label="Substation" 
-                    value={profile?.substation ? 
-                      `${profile.substation.substation} (${profile.substation.category})` : 
+                  <DetailRow
+                    label="Substation"
+                    value={profile?.substation ?
+                      `${profile.substation.substation} (${profile.substation.category})` :
                       "N/A"
                     }
                   />
@@ -340,8 +340,8 @@ const PartnerDashboard = () => {
 
             {/* Timeline Section */}
             <div style={{ marginTop: "25px" }}>
-              <h3 style={{ 
-                margin: "0 0 15px 0", 
+              <h3 style={{
+                margin: "0 0 15px 0",
                 color: "#2c3e50",
                 fontSize: "16px",
                 display: "flex",
@@ -350,7 +350,7 @@ const PartnerDashboard = () => {
               }}>
                 <FiCalendar style={{ color: "#3498db" }} /> Timeline
               </h3>
-              <div style={{ 
+              <div style={{
                 background: "#f8f9fa",
                 padding: "15px",
                 borderRadius: "10px",
@@ -382,7 +382,7 @@ const PartnerDashboard = () => {
 
           {/* Document Card */}
           {profile?.landDocument?.fileUrl && (
-            <div style={{ 
+            <div style={{
               background: "#fff",
               borderRadius: "12px",
               padding: "25px",
@@ -485,8 +485,8 @@ const DetailRow = ({ label, value }) => (
     <div style={{ fontSize: "12px", color: "#7f8c8d", marginBottom: "4px" }}>
       {label}
     </div>
-    <div style={{ 
-      fontSize: "14px", 
+    <div style={{
+      fontSize: "14px",
       fontWeight: "600",
       color: "#2c3e50",
       wordBreak: "break-word"

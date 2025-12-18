@@ -38,8 +38,8 @@ const SolarFarmForm = () => {
   const [logoutAssociate, { isLoading: isLoggingOut }] = useLogoutAssociateMutation();
 
   const { data: profileData } = useGetAssociateProfileQuery(associateId, {
-  skip: !associateId,
-});
+    skip: !associateId,
+  });
 
   const [farms, setFarms] = useState([
     {
@@ -76,84 +76,84 @@ const SolarFarmForm = () => {
 
 
   // ✅ Extract number from "10MW"
-const contractCapacityMW = Number(
-  (profileData?.profile?.contractCapacity || "0")
-    .toString()
-    .replace(/[^0-9.]/g, "")
-);
+  const contractCapacityMW = Number(
+    (profileData?.profile?.contractCapacity || "0")
+      .toString()
+      .replace(/[^0-9.]/g, "")
+  );
 
-const usedSolarCapacityMW = Array.isArray(profileData?.profile?.onboard?.solarFarms)
-  ? profileData.profile.onboard.solarFarms.reduce((sum, farm) => {
+  const usedSolarCapacityMW = Array.isArray(profileData?.profile?.onboard?.solarFarms)
+    ? profileData.profile.onboard.solarFarms.reduce((sum, farm) => {
       const ac = Number(farm?.capacity?.ac || 0);
       return sum + ac;
     }, 0)
-  : 0;
+    : 0;
 
   const usedConsumerCapacityMW = Array.isArray(profileData?.profile?.onboard?.consumers)
-  ? profileData.profile.onboard.consumers.reduce((sum, c) => {
+    ? profileData.profile.onboard.consumers.reduce((sum, c) => {
       const load = Number(c?.consumerLoadCapacity || c?.loadCapacity || 0);
       return sum + load;
     }, 0)
-  : 0;
+    : 0;
 
   const onboardType = profileData?.profile?.onboardType;
 
-const usedCapacityMW =
-  onboardType === "SOLARFARM"
-    ? usedSolarCapacityMW
-    : usedConsumerCapacityMW;
+  const usedCapacityMW =
+    onboardType === "SOLARFARM"
+      ? usedSolarCapacityMW
+      : usedConsumerCapacityMW;
 
-    const remainingCapacityMW = Math.max(
-  contractCapacityMW - usedCapacityMW,
-  0
-);
+  const remainingCapacityMW = Math.max(
+    contractCapacityMW - usedCapacityMW,
+    0
+  );
 
 
   const contractCapacity =
-  profileData?.profile?.contractCapacity || "N/A";
+    profileData?.profile?.contractCapacity || "N/A";
 
 
 
   useEffect(() => {
-  if (!profileData) return;
+    if (!profileData) return;
 
-  let solarFarms = [];
+    let solarFarms = [];
 
-  if (Array.isArray(profileData?.solarFarms)) {
-    solarFarms = profileData.solarFarms;
-  } 
-  else if (Array.isArray(profileData?.onboard?.solarFarms)) {
-    solarFarms = profileData.onboard.solarFarms;
-  }
+    if (Array.isArray(profileData?.solarFarms)) {
+      solarFarms = profileData.solarFarms;
+    }
+    else if (Array.isArray(profileData?.onboard?.solarFarms)) {
+      solarFarms = profileData.onboard.solarFarms;
+    }
 
-  if (solarFarms.length > 0) {
-    setFarms(
-      solarFarms.map((f) => ({
-        ...f,
+    if (solarFarms.length > 0) {
+      setFarms(
+        solarFarms.map((f) => ({
+          ...f,
 
-        // 👇 frontend-only fields (form requires these)
-        landDocument: {
-          file: null,
-          fileUrl: f.landDocument?.fileUrl || "",
-          fileType: f.landDocument?.fileType || "",
-        },
+          // 👇 frontend-only fields (form requires these)
+          landDocument: {
+            file: null,
+            fileUrl: f.landDocument?.fileUrl || "",
+            fileType: f.landDocument?.fileType || "",
+          },
 
-        districts: [],
-        talukas: [],
-        stations: [],
-        rawData: [],
-      }))
-    );
-  }
-}, [profileData]);
-console.log("PROFILE GET:", profileData);
+          districts: [],
+          talukas: [],
+          stations: [],
+          rawData: [],
+        }))
+      );
+    }
+  }, [profileData]);
+  console.log("PROFILE GET:", profileData);
 
   const handleLogout = async () => {
     try {
       await logoutAssociate().unwrap();
       localStorage.removeItem("AssociatePartnerAuth");
       alert("Logged out successfully!");
-      navigate("/UserLogin");
+      navigate("/choose-account-type");
     } catch (err) {
       console.error("Logout Error:", err);
       alert("Logout failed!");
@@ -344,50 +344,50 @@ console.log("PROFILE GET:", profileData);
             <div className="flex items-center gap-3 mb-2">
 
               <div>
-<div className="flex items-center gap-3 mb-2">
-  <div className="p-2 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg">
-    <Sun className="w-6 h-6 text-white" />
-  </div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg">
+                    <Sun className="w-6 h-6 text-white" />
+                  </div>
 
-  <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-    Solar Farm Management
-  </h1>
-</div>
+                  <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                    Solar Farm Management
+                  </h1>
+                </div>
 
-               <p className="text-sm text-gray-600 mt-1">
-  Associate:{" "}
-  <span className="font-semibold text-amber-600">
-    {associate?.user?.name || "Associate"}
-  </span>{" "}
-  | Onboard Type:{" "}
-  <span className="font-semibold text-orange-600">SOLARFARM</span>{" "}
-  | Contract Capacity:{" "}
-  <span className="font-semibold text-emerald-600">
-    {contractCapacity}
-  </span>
-</p>
-<div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-  <div className="p-4 bg-emerald-50 border rounded-xl text-center">
-    <div className="text-sm text-gray-600">Contract Capacity</div>
-    <div className="text-2xl font-bold text-emerald-600">
-      {contractCapacityMW} MW
-    </div>
-  </div>
+                <p className="text-sm text-gray-600 mt-1">
+                  Associate:{" "}
+                  <span className="font-semibold text-amber-600">
+                    {associate?.user?.name || "Associate"}
+                  </span>{" "}
+                  | Onboard Type:{" "}
+                  <span className="font-semibold text-orange-600">SOLARFARM</span>{" "}
+                  | Contract Capacity:{" "}
+                  <span className="font-semibold text-emerald-600">
+                    {contractCapacity}
+                  </span>
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                  <div className="p-4 bg-emerald-50 border rounded-xl text-center">
+                    <div className="text-sm text-gray-600">Contract Capacity</div>
+                    <div className="text-2xl font-bold text-emerald-600">
+                      {contractCapacityMW} MW
+                    </div>
+                  </div>
 
-  <div className="p-4 bg-blue-50 border rounded-xl text-center">
-    <div className="text-sm text-gray-600">Used Capacity</div>
-    <div className="text-2xl font-bold text-blue-600">
-      {usedCapacityMW} MW
-    </div>
-  </div>
+                  <div className="p-4 bg-blue-50 border rounded-xl text-center">
+                    <div className="text-sm text-gray-600">Used Capacity</div>
+                    <div className="text-2xl font-bold text-blue-600">
+                      {usedCapacityMW} MW
+                    </div>
+                  </div>
 
-  <div className="p-4 bg-amber-50 border rounded-xl text-center">
-    <div className="text-sm text-gray-600">Remaining Capacity</div>
-    <div className="text-2xl font-bold text-amber-600">
-      {remainingCapacityMW} MW
-    </div>
-  </div>
-</div>
+                  <div className="p-4 bg-amber-50 border rounded-xl text-center">
+                    <div className="text-sm text-gray-600">Remaining Capacity</div>
+                    <div className="text-2xl font-bold text-amber-600">
+                      {remainingCapacityMW} MW
+                    </div>
+                  </div>
+                </div>
 
 
               </div>

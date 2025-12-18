@@ -86,7 +86,7 @@ const ConsumerForm = () => {
     try {
       await logoutAssociate().unwrap();
       localStorage.removeItem("AssociatePartnerAuth");
-      navigate("/UserLogin");
+      navigate("/choose-account-type");
     } catch {
       alert("Logout failed!");
     }
@@ -154,7 +154,7 @@ const ConsumerForm = () => {
                 </div>
               </div>
             </div>
-            
+
             <p className="text-gray-600 mt-3 max-w-2xl">
               Add and manage consumer details with load capacity allocation.
               Track your contract utilization in real-time.
@@ -293,8 +293,8 @@ const ConsumerForm = () => {
           {/* Consumer Inputs */}
           <div className="p-6 space-y-4">
             {consumers.map((consumer, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="relative bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-xl p-5 hover:border-amber-200 transition-colors"
               >
                 <div className="absolute top-4 right-4 flex items-center gap-2">
@@ -302,7 +302,7 @@ const ConsumerForm = () => {
                     #{index + 1}
                   </span>
                   {consumers.length > 1 && (
-                    <button 
+                    <button
                       onClick={() => removeConsumer(index)}
                       className="p-2 hover:bg-red-50 rounded-lg transition-colors group"
                       title="Remove consumer"

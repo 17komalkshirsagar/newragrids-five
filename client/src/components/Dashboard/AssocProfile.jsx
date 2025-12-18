@@ -138,7 +138,7 @@ const AssocProfile = () => {
                     {profile?.name || associate?.name || 'Associate'}
                   </span>
                 </span>
-                
+
                 <div className="hidden md:flex items-center gap-1 px-2 py-1 bg-green-50 rounded-full">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-xs text-green-700">Active</span>
@@ -160,11 +160,10 @@ const AssocProfile = () => {
 
       {/* Stats Overview */}
       <div
-        className={`grid grid-cols-1 sm:grid-cols-2 ${
-          onboardType === 'CONSUMER'
+        className={`grid grid-cols-1 sm:grid-cols-2 ${onboardType === 'CONSUMER'
             ? 'lg:grid-cols-5'
             : 'lg:grid-cols-5'
-        } gap-4 mb-8`}
+          } gap-4 mb-8`}
       >
         {onboardType === 'CONSUMER' ? (
           <>
@@ -547,12 +546,12 @@ const AssocProfile = () => {
                 </div>
               </div>
             ) : (
-           <EmptyState
-  icon={<FiCreditCard className="w-16 h-16 text-gray-300" />}
-  title="No Bank Details Available"
-  description="Please contact our support team to add or update your banking details."
-  onAction={() => navigate('/support')}
-/>
+              <EmptyState
+                icon={<FiCreditCard className="w-16 h-16 text-gray-300" />}
+                title="No Bank Details Available"
+                description="Please contact our support team to add or update your banking details."
+                onAction={() => navigate('/support')}
+              />
 
             )}
           </div>
@@ -635,8 +634,8 @@ const TabButton = ({ active, onClick, icon, children, badge }) => (
   <button
     onClick={onClick}
     className={`px-4 py-2.5 rounded-lg font-medium flex items-center gap-2 transition-colors ${active
-        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
-        : 'text-gray-600 hover:bg-gray-100'
+      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
+      : 'text-gray-600 hover:bg-gray-100'
       }`}
   >
     {icon}
